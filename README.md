@@ -53,13 +53,3 @@ python main.py generate --template template.png --config config.json --gennum 20
 ```
 
 The generator will create multiple synthetic example images based on the template and configuration.
-
-## License
-
-This project is provided under a Keep-Always-Open license:
-- You may use it commercially.
-- You may modify and redistribute it.
-- The source must always remain open and available.
-- Derivative works must follow the same open conditions.
-
-This ensures permanent openness while allowing full commercial usage.
