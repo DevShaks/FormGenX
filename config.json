@@ -1,0 +1,125 @@
+{
+  "template": "example.png",
+  "layout": "example.json",
+
+  "global": {
+    "default_presence_prob": 0.95,
+    "default_style": "computer",
+    "font_scale": 0.6,
+    "font_thickness": 1
+  },
+
+  "fields": {
+    "name": {
+      "generator": "from_list",
+      "presence_prob": 1.0,
+      "style": "computer",
+      "params": {
+        "values": ["Müller", "Schmidt", "Becker", "Klein", "Weber", "Richter", "Brandt", "Schuster"]
+      }
+    },
+
+    "geb": {
+      "generator": "date",
+      "presence_prob": 1.0,
+      "style": "computer",
+      "params": {
+        "start_year": 1940,
+        "end_year": 2008
+      }
+    },
+
+    "strasse": {
+      "generator": "from_list",
+      "presence_prob": 1.0,
+      "style": "computer",
+      "params": {
+        "values": [
+          "Hauptstraße 12",
+          "Bahnhofweg 4",
+          "Gartenallee 9",
+          "Lindenweg 22",
+          "Bergstraße 17",
+          "Waldweg 8",
+          "Feldstraße 3",
+          "Ringstraße 14"
+        ]
+      }
+    },
+
+    "telefon": {
+      "generator": "from_list",
+      "presence_prob": 1.0,
+      "style": "computer",
+      "params": {
+        "values": [
+          "0151 2345678",
+          "0176 99887766",
+          "0157 44332211",
+          "0160 55667788",
+          "0171 11223344"
+        ]
+      }
+    },
+
+    "beruf": {
+      "generator": "from_list",
+      "presence_prob": 0.95,
+      "style": "computer",
+      "params": {
+        "values": [
+          "Angestellter",
+          "Schüler",
+          "Student",
+          "Handwerker",
+          "Bürokraft",
+          "Selbstständig",
+          "Rentner"
+        ]
+      }
+    },
+
+    "warten": {
+      "generator": "from_list",
+      "presence_prob": 0.85,
+      "style": "computer",
+      "params": {
+        "values": [
+          "Hausarztbesuch wegen Routineuntersuchung",
+          "Lang anhaltende Erkältungssymptome",
+          "Unklare Bauchschmerzen",
+          "Allergische Beschwerden",
+          "Vorsorgeuntersuchung",
+          "Abklärung von Schmerzen"
+        ]
+      }
+    },
+
+    "verart": {
+      "generator": "checkbox_group_random",
+      "presence_prob": 1.0,
+      "params": {
+        "mode": "single",
+        "missing_prob": 0.05
+      }
+    },
+
+    "alergia": {
+      "generator": "checkbox_group_random",
+      "presence_prob": 0.85,
+      "params": {
+        "mode": "multi",
+        "missing_prob": 0.15
+      }
+    },
+
+    "erkrankung": {
+      "generator": "checkbox_group_random",
+      "presence_prob": 0.90,
+      "params": {
+        "mode": "multi",
+        "missing_prob": 0.20
+      }
+    }
+  }
+}
