@@ -10,6 +10,7 @@ This project provides a complete workflow for creating synthetic form datasets. 
 - Configurable data generation through external JSON files.
 - Dynamic discovery of generation functions.
 - Outputs image-based form examples.
+- Stores a JSON per sample that captures who filled the form and which values/checks were applied.
 - Fully open licensing for commercial use.
 
 ## Installation
@@ -18,7 +19,7 @@ This project provides a complete workflow for creating synthetic form datasets. 
 2. Install dependencies:
 
 ```
-uv sync
+pip install opencv-python
 ```
 
 3. Place your template image in the project folder.
@@ -30,7 +31,7 @@ uv sync
 Run the editor to define text fields and checkbox areas on your template:
 
 ```
-uv run main.py edit --template example.png
+python main.py edit --template template.png
 ```
 
 Controls:
@@ -49,7 +50,10 @@ Use a config JSON to map fields to generator functions.
 Example:
 
 ```
-uv run main.py generate --template example.png --config config.json --gennum 20 --outputfolder out --outputtype png
+python main.py generate --template example.png --config config.json --gennum 20 --outputfolder out --outputtype png
 ```
 
 The generator will create multiple synthetic example images based on the template and configuration.
+
+Each output sample now produces a companion JSON file in the same folder. The metadata file shares the image's base name and ends with `.json` (for example `sample_1.json`) and records when the form was generated, who triggered the run, and the exact field values or checkbox selections that were written to the image.
+

@@ -1,7 +1,7 @@
 [project]
 name = "formular-test-data-generator"
 version = "0.1.0"
-description = "Open-source form template editor and synthetic data generator for ML, OCR, and document AI.
+description = "Open-source form template editor and synthetic data generator for ML, OCR, and document AI."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
