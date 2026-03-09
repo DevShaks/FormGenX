@@ -1,4 +1,4 @@
-import cv2
+﻿import cv2
 import json
 import os
 
@@ -29,17 +29,20 @@ class Editor:
             mode = self.ask_mode()
 
             if mode == "t":
-                self.process_field_loop("text")
+                self.process_field_loop("text", (0, 0, 255))
 
             elif mode == "c":
-                self.process_field_loop("checkbox")
+                self.process_field_loop("checkbox", (0, 0, 255))
+
+            elif mode == "st":
+                self.process_field_loop("stamp", (180, 0, 180))
 
             elif mode == "ca":
                 self.process_checkbox_area()
 
             elif mode == "s":
                 end = self.template_path.split(".")[-1]
-                cv2.imwrite(f"edited_image.{end}",self.display_img)
+                cv2.imwrite(f"edited_image.{end}", self.display_img)
                 self.save_json()
 
             elif mode == "q":
@@ -53,29 +56,29 @@ class Editor:
         print("\n--- Select mode ---")
         print("t: text field")
         print("c: checkbox field")
+        print("st: stamp field")
         print("ca: checkbox area (parent + children)")
         print("s: save")
         print("q: quit")
 
         while True:
             mode = input("Mode: ").lower().strip()
-            if mode in ["t", "c", "ca", "s", "q"]:
+            if mode in ["t", "c", "st", "ca", "s", "q"]:
                 return mode
-            print("Invalid mode. Use t/c/ca/s/q.")
+            print("Invalid mode. Use t/c/st/ca/s/q.")
 
     # ============================
-    # SIMPLE TEXT OR CHECKBOX FIELD
+    # SIMPLE TEXT / CHECKBOX / STAMP FIELD
     # ============================
-    def process_field_loop(self, field_type):
+    def process_field_loop(self, field_type, color):
         print(f"\n=== {field_type.upper()} MODE ACTIVE ===")
         print("Select area with mouse, press ENTER to confirm.")
         print("Press 'q' in ROI window to return to mode selection.")
 
         while True:
-            roi = cv2.selectROI("Select Field", self.display_img,
-                                showCrosshair=True, fromCenter=False)
+            roi = cv2.selectROI("Select Field", self.display_img, showCrosshair=True, fromCenter=False)
 
-            # User pressed q → ROI empty
+            # User pressed q -> ROI empty
             if roi == (0, 0, 0, 0):
                 print("Returning to mode selection...")
                 cv2.destroyWindow("Select Field")
@@ -85,7 +88,7 @@ class Editor:
             cv2.destroyWindow("Select Field")
 
             x1, y1, x2, y2 = x, y, x + w, y + h
-            print(f"Selected: {x1}, {y1} → {x2}, {y2}")
+            print(f"Selected: {x1}, {y1} -> {x2}, {y2}")
 
             name = input("Enter field name: ").strip()
 
@@ -95,11 +98,11 @@ class Editor:
                 "x1": int(x1),
                 "y1": int(y1),
                 "x2": int(x2),
-                "y2": int(y2)
+                "y2": int(y2),
             }
 
             self.fields.append(field)
-            self.draw_field(field, (0, 0, 255))  # red
+            self.draw_field(field, color)
 
     # ============================
     # CHECKBOX GROUP MODE
@@ -108,8 +111,7 @@ class Editor:
         print("\n=== CHECKBOX AREA MODE ===")
         print("Select PARENT checkbox area.")
 
-        roi = cv2.selectROI("Select Parent Checkbox", self.display_img,
-                            showCrosshair=True, fromCenter=False)
+        roi = cv2.selectROI("Select Parent Checkbox", self.display_img, showCrosshair=True, fromCenter=False)
         cv2.destroyWindow("Select Parent Checkbox")
 
         x, y, w, h = roi
@@ -127,7 +129,7 @@ class Editor:
             "y1": int(y1),
             "x2": int(x2),
             "y2": int(y2),
-            "children": []
+            "children": [],
         }
 
         self.draw_field(parent, (0, 0, 255))
@@ -136,8 +138,7 @@ class Editor:
         print("Press C in ROI window to finish child selection.")
 
         while True:
-            roi = cv2.selectROI("Select Child Checkbox", self.display_img,
-                                showCrosshair=True, fromCenter=False)
+            roi = cv2.selectROI("Select Child Checkbox", self.display_img, showCrosshair=True, fromCenter=False)
 
             if roi == (0, 0, 0, 0):
                 cv2.destroyWindow("Select Child Checkbox")
@@ -153,11 +154,11 @@ class Editor:
                 "x1": int(x),
                 "y1": int(y),
                 "x2": int(x + w),
-                "y2": int(y + h)
+                "y2": int(y + h),
             }
 
             parent["children"].append(child)
-            self.draw_field(child, (0, 255, 0))  # green
+            self.draw_field(child, (0, 255, 0))
 
         self.fields.append(parent)
 
@@ -177,7 +178,7 @@ class Editor:
             cv2.FONT_HERSHEY_SIMPLEX,
             0.6,
             color,
-            2
+            2,
         )
 
         cv2.imshow("Template", self.display_img)
@@ -188,6 +189,6 @@ class Editor:
     # ============================
     def save_json(self):
         out = os.path.splitext(self.template_path)[0] + ".json"
-        with open(out, "w") as f:
+        with open(out, "w", encoding="utf-8") as f:
             json.dump(self.fields, f, indent=4)
-        print(f"Saved layout JSON → {out}")
+        print(f"Saved layout JSON -> {out}")
