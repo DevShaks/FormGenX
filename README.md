@@ -581,7 +581,17 @@ Yes. Add multiple entries to `stamp_overlays`.
 ### Is the stamp renderer deterministic?
 
 Not yet by explicit seed control. It uses random sampling internally. Deterministic generation can be added later by introducing seed plumbing through the pipeline.
+## Disclaimer
 
+This repository, including all generated images, metadata, synthetic or fictitious forms, stamps, handwriting overlays, and related outputs, is provided solely for educational, research, testing, and demonstration purposes.
+
+The generated data is artificial, synthetic, and fictitious, and must not be relied upon, deployed, or used in any real-world application, production system, operational workflow, compliance process, medical process, legal process, governmental process, financial process, identity verification process, or decision-making system.
+
+This repository is not intended for, and must not be used for, fraud, impersonation, deception, forgery, falsification of records, circumvention of verification processes, or any unlawful, unethical, or misleading activity.
+
+No representation or warranty is made that the generated data is accurate, complete, safe, lawful, compliant, unbiased, or fit for any particular purpose. Any resemblance to real persons, institutions, records, identifiers, or documents is incidental and does not create any authorization for real-world use.
+
+By using this project, the user accepts full responsibility for ensuring that all use remains limited to lawful educational or experimental contexts. Any use outside those limited contexts is expressly discouraged and is undertaken entirely at the user's own risk.
 
 
 
