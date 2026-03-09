@@ -63,3 +63,13 @@ All generated data is synthetic and fictitious. It must not be used, relied upon
 This project is not intended to create or support documents, artifacts, or data for real-world use, impersonation, fraud, or misrepresentation.
 No representation or warranty is made regarding the accuracy, completeness, safety, legality, compliance, or fitness of the generated data for any purpose. Any resemblance to real persons, institutions, identifiers, documents, or records is purely coincidental.
 By using this repository, users agree that all usage remains limited to lawful educational or experimental contexts. Any use outside these contexts is undertaken entirely at the user's own risk and responsibility.
+
+### Ethical Use
+This project is intended to support research, experimentation, and educational work related to synthetic data generation, machine learning, and computer vision. Users are expected to use this repository responsibly and in accordance with applicable laws and ethical standards.
+The tools and generated outputs provided by this repository must not be used to create deceptive materials, impersonate individuals or institutions, produce fraudulent documents, or otherwise mislead people or systems.
+Any misuse of this project for illegal, harmful, deceptive, or unethical purposes is strictly discouraged and is solely the responsibility of the user.
+
+### Dataset Limitations
+All generated images, documents, metadata, and related artifacts produced by this repository are synthetic and may contain inaccuracies, unrealistic artifacts, structural inconsistencies, or incomplete representations of real-world documents.
+These outputs are not intended to reflect real institutions, official document formats, or authentic administrative processes. The generated data may also contain biases or simplifications introduced by the generation process.
+Users should treat all generated outputs strictly as experimental or illustrative data and should not assume correctness, realism, or suitability for real-world applications.
